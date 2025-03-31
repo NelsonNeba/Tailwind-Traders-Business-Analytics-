@@ -1,0 +1,99 @@
+table Purchases
+	lineageTag: 78dc9bfc-4733-4953-854f-42fe57685301
+
+	column PurchaseID
+		dataType: int64
+		formatString: 0
+		lineageTag: 5c34e213-46d9-4676-8e40-a528f20dfeca
+		summarizeBy: count
+		sourceColumn: PurchaseID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Supplier          '
+		dataType: string
+		lineageTag: 69563151-2acc-4d4b-80fd-8f232f700751
+		summarizeBy: none
+		sourceColumn: " Supplier          "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Last Visited'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ff629ecc-3976-46dc-8079-508882cee994
+		summarizeBy: none
+		sourceColumn: " Last Visited"
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ReturnStatus
+		dataType: string
+		lineageTag: 1b708341-0386-4f16-b5b4-ecf61bf25597
+		summarizeBy: none
+		sourceColumn: ReturnStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Warranty (Months)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 451587f8-772e-4433-95a6-75a5bccd3f77
+		summarizeBy: sum
+		sourceColumn: " Warranty (Months)"
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Purchase Date'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 277218c6-7596-4a52-ba13-cfa0f7c8cc9f
+		summarizeBy: none
+		sourceColumn: " Purchase Date"
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ' Return Policy (Days)'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4e6f5c80-35ab-4ee4-9554-a2880a682a4c
+		summarizeBy: sum
+		sourceColumn: " Return Policy (Days)"
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Feedback'
+		dataType: string
+		lineageTag: a6b66b3f-b8b3-42d5-b7b0-a99354d14349
+		summarizeBy: none
+		sourceColumn: " Feedback"
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' OrderID '
+		dataType: int64
+		formatString: 0
+		lineageTag: d2f75fdf-635f-4e99-96dd-f220922a644f
+		summarizeBy: none
+		sourceColumn: " OrderID "
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Purchases = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\emily\Downloads\Purchases.xlsx"), null, true),
+				    Purchases_Sheet = Source{[Item="Purchases",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Purchases_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PurchaseID", Int64.Type}, {" Supplier          ", type text}, {" Last Visited", type date}, {"ReturnStatus", type text}, {" Warranty (Months)", Int64.Type}, {" Purchase Date", type date}, {" Return Policy (Days)", Int64.Type}, {" Feedback", type text}, {" OrderID ", Int64.Type}}),
+				    #"Filtered Rows" = Table.SelectRows(#"Changed Type", each true)
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+

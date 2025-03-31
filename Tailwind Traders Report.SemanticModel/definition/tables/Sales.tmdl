@@ -1,0 +1,243 @@
+table Sales
+	lineageTag: 02473e03-ba15-482e-b01e-38d2a412dcf4
+
+	column ' OrderID '
+		dataType: int64
+		formatString: 0
+		lineageTag: 0132690e-1f4f-4c4d-85ea-08e879ae4da0
+		summarizeBy: none
+		sourceColumn: " OrderID "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Customer Name   '
+		dataType: string
+		lineageTag: bdd9d1ab-8aa9-4822-ba46-d77177b1d327
+		summarizeBy: none
+		sourceColumn: " Customer Name   "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		dataType: string
+		lineageTag: b87ef3a2-64ce-4c18-983c-40e72b44dc2e
+		summarizeBy: none
+		sourceColumn: Product Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Description'
+		dataType: string
+		lineageTag: 77cfecb1-da13-4d06-8e97-68e93bbbbdf2
+		summarizeBy: none
+		sourceColumn: Product Description
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Product Price'
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 99c5115b-2475-46e7-a5f7-ae140aab6d75
+		summarizeBy: sum
+		sourceColumn: Gross Product Price
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Tax Per Product'
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 5ccf394e-e495-4ef3-bea2-a2f45c6ccfca
+		summarizeBy: sum
+		sourceColumn: Tax Per Product
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Quantity Purchased'
+		dataType: int64
+		formatString: 0
+		lineageTag: 05cb7dbf-1030-45ec-8dc2-5a5e73aa28a5
+		summarizeBy: sum
+		sourceColumn: Quantity Purchased
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Revenue'
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 989a771b-81e7-48a1-a1a2-50bd6a6f682e
+		summarizeBy: sum
+		sourceColumn: Gross Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Total Tax'
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 65cd8ba0-c4fc-4b62-8e30-068d2180b285
+		summarizeBy: sum
+		sourceColumn: Total Tax
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Net Revenue'
+		dataType: decimal
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 01114980-d94d-4db9-b046-05478bcac710
+		summarizeBy: sum
+		sourceColumn: Net Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Product Category'
+		dataType: string
+		lineageTag: 4e1cf442-b5f8-43fe-8cf9-2834655cd1e2
+		summarizeBy: none
+		sourceColumn: Product Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' SKU Number '
+		dataType: string
+		lineageTag: 2e9e0da9-0b34-4c97-999c-52cd8351a3dc
+		summarizeBy: none
+		sourceColumn: " SKU Number "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Weight '
+		dataType: int64
+		formatString: 0
+		lineageTag: 203eceb4-36a3-4ebd-a944-596699794d38
+		summarizeBy: none
+		sourceColumn: " Weight "
+
+		annotation SummarizationSetBy = User
+
+	column ' Color  '
+		dataType: string
+		lineageTag: ae4cf12b-bf9c-4127-a583-b2ea97556268
+		summarizeBy: none
+		sourceColumn: " Color  "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Size  '
+		dataType: string
+		lineageTag: c141d9aa-fe41-4688-afec-d4e7d3e0a9ca
+		summarizeBy: none
+		sourceColumn: " Size  "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Rating'
+		dataType: decimal
+		lineageTag: f6fe0f4c-363e-4598-b3a4-f2ec60c7faad
+		summarizeBy: none
+		sourceColumn: " Rating"
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ' Stock  '
+		dataType: int64
+		formatString: 0
+		lineageTag: 27520138-f36e-4a83-a739-6ca810f02496
+		summarizeBy: none
+		sourceColumn: " Stock  "
+
+		annotation SummarizationSetBy = User
+
+	column ' Country ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: ac0d0e77-b3c0-4c08-81b7-3d96890771a4
+		summarizeBy: none
+		sourceColumn: " Country ID"
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Sales Rep '
+		dataType: string
+		lineageTag: f113084e-a470-45c7-8289-d21b49ae6929
+		summarizeBy: none
+		sourceColumn: " Sales Rep "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' CustomerID'
+		dataType: string
+		lineageTag: 9b904cdc-cdd4-43b6-8463-b43fb6bd397a
+		summarizeBy: none
+		sourceColumn: " CustomerID"
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Address        '
+		dataType: string
+		lineageTag: ad009145-464e-4761-a0e0-64cb10b9d0ea
+		summarizeBy: none
+		sourceColumn: " Address        "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Zip Code'
+		dataType: string
+		lineageTag: c5f8ce4c-aef7-43c5-8f89-3df1e0736feb
+		summarizeBy: none
+		sourceColumn: " Zip Code"
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Phone    '
+		dataType: int64
+		formatString: 0
+		lineageTag: 009746ff-0fb2-45e7-9198-4cd140e4e073
+		summarizeBy: none
+		sourceColumn: " Phone    "
+
+		annotation SummarizationSetBy = User
+
+	column ' Email            '
+		dataType: string
+		lineageTag: f9224baf-90e0-4b59-99ac-5364cb5c4721
+		summarizeBy: none
+		sourceColumn: " Email            "
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Loyalty Points'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5ed7eb4d-b5ea-478d-8aa0-06f4d780cb24
+		summarizeBy: none
+		sourceColumn: " Loyalty Points"
+
+		annotation SummarizationSetBy = User
+
+	partition Sales = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\emily\Downloads\TailwindTradersSales.xlsx"), null, true),
+				    Sales_Sheet = Source{[Item="Sales",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{" OrderID ", Int64.Type}, {" Customer Name   ", type text}, {"Product Name", type text}, {"Product Description", type text}, {"Gross Product Price", Currency.Type}, {"Tax Per Product", Currency.Type}, {"Quantity Purchased", Int64.Type}, {"Gross Revenue", Currency.Type}, {"Total Tax", Currency.Type}, {"Net Revenue", Currency.Type}, {"Product Category", type text}, {" SKU Number ", type text}, {" Weight ", Int64.Type}, {" Color  ", type text}, {" Size  ", type text}, {" Rating", Currency.Type}, {" Stock  ", Int64.Type}, {" Country ID", Int64.Type}, {" Sales Rep ", type text}, {" CustomerID", type text}, {" Address        ", type text}, {" Zip Code", type any}, {" Phone    ", Int64.Type}, {" Email            ", type text}, {" Loyalty Points", Int64.Type}}),
+				    #"Removed Blank Rows" = Table.SelectRows(#"Changed Type", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Removed Blank Rows"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

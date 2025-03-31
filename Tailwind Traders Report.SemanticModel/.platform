@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Tailwind Traders Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "66125c98-b22a-41ff-b624-faedd8a19b3e"
+  }
+}

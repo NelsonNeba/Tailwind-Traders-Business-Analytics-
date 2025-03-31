@@ -1,0 +1,42 @@
+table Countries
+	lineageTag: d8a990b6-020b-4d2e-a232-7937c5e31833
+
+	column 'Country ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 477ebf08-01a6-4f58-9d36-49339d94d5dd
+		summarizeBy: none
+		sourceColumn: Country ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Country
+		dataType: string
+		lineageTag: 72a41ba7-92db-46b7-a47f-5487e20423d6
+		summarizeBy: none
+		sourceColumn: Country
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exchange ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: 5eb2f5b0-de57-421f-84e1-c445d7b3d33d
+		summarizeBy: none
+		sourceColumn: Exchange ID
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Countries = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\emily\Downloads\Countries.xlsx"), null, true),
+				    Countries_Sheet = Source{[Item="Countries",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Countries_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Country ID", Int64.Type}, {"Country", type text}, {"Exchange ID", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

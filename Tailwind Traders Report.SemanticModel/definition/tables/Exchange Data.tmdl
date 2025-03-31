@@ -1,0 +1,42 @@
+table 'Exchange Data'
+	lineageTag: 60231589-ddef-46ec-8378-f26a3b823943
+
+	column 'Exchange ID'
+		dataType: int64
+		formatString: 0
+		lineageTag: d491cf32-acc6-4ffc-8b5d-357b7f25b7ef
+		summarizeBy: none
+		sourceColumn: Exchange ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ExchangeRate
+		dataType: double
+		lineageTag: 48c09ecc-d463-4b82-8563-22d119afab4a
+		summarizeBy: sum
+		sourceColumn: ExchangeRate
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Exchange Currency'
+		dataType: string
+		lineageTag: d52cd752-2ceb-40d3-944f-54c997e15749
+		summarizeBy: none
+		sourceColumn: Exchange Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Exchange Data' = m
+		mode: import
+		source =
+				let
+				    Source = Python.Execute("import pandas as pd#(lf)from io import StringIO#(lf)#(lf)data = """"""Exchange ID;ExchangeRate;Exchange Currency#(lf)1;1;USD#(lf)2;0.75;GBP#(lf)3;0.85;EUR#(lf)4;3.67;AED#(lf)5;1.3;AUD""""""#(lf)df = pd.read_csv(StringIO(data), sep=';')#(lf)#(lf)# Return the transformed dataframe#(lf)df"),
+				    df1 = Source{[Name="df"]}[Value],
+				    #"Changed Type" = Table.TransformColumnTypes(df1,{{"Exchange ID", Int64.Type}, {"ExchangeRate", type number}, {"Exchange Currency", type text}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+

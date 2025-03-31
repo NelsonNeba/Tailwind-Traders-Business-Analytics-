@@ -1,0 +1,100 @@
+table Calendar
+	lineageTag: 0bd48d4b-afde-484a-bed7-c2c7329e3af0
+	dataCategory: Time
+
+	column Date
+		isKey
+		formatString: Long Date
+		lineageTag: 93586ca1-8863-4a41-a0a7-0a7f725cbd30
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		formatString: 0
+		lineageTag: 402da3f4-b853-4ab1-9b31-e079e76a9831
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = User
+
+	column 'Month Number'
+		formatString: 0
+		lineageTag: 08833482-8a78-41f5-a76c-8e8914248103
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month Number]
+
+		annotation SummarizationSetBy = User
+
+	column Month
+		lineageTag: c94cb4af-cca7-422d-b4ac-3a8a89f09b34
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		formatString: 0
+		lineageTag: bdb98976-d106-473b-bca8-7be5bf0bfbef
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = User
+
+	column Weekday
+		formatString: 0
+		lineageTag: 2729901b-9a5c-4d4d-a632-a0c03714d67e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Weekday]
+
+		annotation SummarizationSetBy = User
+
+	column Day
+		formatString: 0
+		lineageTag: 6e97c0f7-335f-40df-9ea9-0eb35698e4ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Day]
+
+		annotation SummarizationSetBy = User
+
+	hierarchy 'Date Hierarchy'
+		lineageTag: 1d302941-5c34-4ba6-8ca3-75df0a45a108
+
+		level Year
+			lineageTag: 816e51d5-d52b-47e7-8f2c-5d264e3db0ed
+			column: Year
+
+		level Quarter
+			lineageTag: 4136ffb8-22ef-4d58-b2d9-8d9fcb50113c
+			column: Quarter
+
+		level Month
+			lineageTag: 610dc699-42e3-45c7-89ff-f40b56e335d2
+			column: Month
+
+	partition Calendar = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				CALENDAR(DATE(2020, 1, 1), DATE(2023, 12, 31)),
+				"Year", YEAR([Date]),
+				"Month Number", MONTH([Date]),
+				"Month", FORMAT([Date], "MMMM"),
+				"Quarter", QUARTER([Date]),
+				"Weekday", WEEKDAY([Date]),
+				"Day", DAY([Date])
+				)
+
+	annotation PBI_Id = 8f0b745a7e5e4e4485e2e3145e0d53c7
+

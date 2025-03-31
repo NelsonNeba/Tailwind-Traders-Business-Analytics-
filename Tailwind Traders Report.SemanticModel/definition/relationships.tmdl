@@ -1,0 +1,35 @@
+relationship AutoDetected_45f25751-f8ad-4f08-b95e-af0f0cc6de7b
+	fromColumn: Sales.' Country ID'
+	toColumn: Countries.'Country ID'
+
+relationship AutoDetected_7906123c-a173-4bf7-a119-d553b7e807c8
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: 'Exchange Data'.'Exchange ID'
+	toColumn: Countries.'Exchange ID'
+
+relationship f890815a-7ecd-475d-9335-6f5d493fd62d
+	crossFilteringBehavior: bothDirections
+	fromColumn: Purchases.' Purchase Date'
+	toColumn: Calendar.Date
+
+relationship e825fba9-1803-4c30-826e-c85691a79e89
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Sales.' OrderID '
+	toColumn: 'Sales in USD'.' OrderID '
+
+relationship AutoDetected_6fcfd4d0-33b4-4da8-93c2-f1d1b974e5b5
+	isActive: false
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Purchases.' OrderID '
+	toColumn: 'Sales in USD'.' OrderID '
+
+relationship AutoDetected_f44190e0-253b-4345-89dc-e0ba4cf8719e
+	crossFilteringBehavior: bothDirections
+	securityFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: Sales.' OrderID '
+	toColumn: Purchases.' OrderID '
+

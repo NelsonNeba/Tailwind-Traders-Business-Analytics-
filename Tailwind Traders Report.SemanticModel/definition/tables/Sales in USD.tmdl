@@ -1,0 +1,353 @@
+table 'Sales in USD'
+	lineageTag: 8ae12a53-ec7a-4479-8df7-2dc8c4816c9e
+
+	measure 'Yearly Profit Margin' = SUMX('Sales in USD', 'Sales in USD'[Gross Revenue] / 'Sales in USD'[Net Revenue])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Calculations
+		lineageTag: 6d0f5458-ab35-4af4-b4f1-95804c3c544e
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'YTD Profit' = TOTALYTD([Yearly Profit Margin], 'Calendar'[Date])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Calculations
+		lineageTag: 545e3b59-738b-4cbf-a86e-643a01619941
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	measure 'Quarterly Profit' = CALCULATE([Yearly Profit Margin], DATESQTD('Calendar'[Date]))
+		displayFolder: Calculations
+		lineageTag: 5b73cf43-5b4f-4c9f-b85b-d82ae97650e0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Median Sales' = MEDIAN('Sales in USD'[Gross Revenue USD])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Calculations
+		lineageTag: 19bcdb46-4c2c-426c-bec2-c1fbecaf46d4
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	/// Alternate DAX code to calculate Yearly Profit Margin
+	measure 'Yearly Profit Margin2' = DIVIDE(SUM('Sales in USD'[Gross Revenue USD]), SUM('Sales in USD'[Net Revenue USD]))
+		isHidden
+		displayFolder: Calculations
+		lineageTag: 656c4f23-67b7-4819-a099-1446d188fe48
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gross Revenue USD QTD' =
+			
+			TOTALQTD(SUM('Sales in USD'[Gross Revenue USD]), 'Calendar'[Date])
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		displayFolder: Calculations
+		lineageTag: 3c0ee973-15b5-4e53-b131-514d0c27bbaf
+
+		extendedProperty MeasureTemplate =
+				{
+				  "version": 0,
+				  "daxTemplateName": "QuarterToDate"
+				}
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column ' OrderID '
+		formatString: 0
+		lineageTag: dd521245-c5ba-44cb-8473-59a713821a46
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ OrderID ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Customer Name   '
+		lineageTag: c0511992-8559-49c6-8c22-b0e48987b4d7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ Customer Name   ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Name'
+		lineageTag: c0f6be0f-f03a-4f8a-b623-5ba8ea36983e
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[Product Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Product Description'
+		lineageTag: 3d1f53db-6f36-4cac-b08d-45adef3fd5e7
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[Product Description]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Product Price'
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 6664439d-c9fa-47a8-98b3-7bacf7fc4266
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Gross Product Price]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Tax Per Product'
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 53b7eb97-3080-40a7-a2d4-1456cb83c49c
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Tax Per Product]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Quantity Purchased'
+		formatString: 0
+		lineageTag: 894fbf98-56c2-4601-916b-9a300e207053
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Quantity Purchased]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Revenue'
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: dbcf31db-c59b-4d5b-8815-23d32017d9e6
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Gross Revenue]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Total Tax'
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 083cb24c-f790-47fe-85de-b4a7bf114df5
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Total Tax]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Net Revenue'
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 64daf6eb-dfb8-4952-a1ba-fbfcc48057ea
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[Net Revenue]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Product Category'
+		lineageTag: 99ce6b9e-d188-441a-9b52-800657c97f71
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[Product Category]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' SKU Number '
+		lineageTag: ac4d79ed-fa38-4718-bd4d-327463d8e007
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ SKU Number ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Weight '
+		formatString: 0
+		lineageTag: f7a795fb-37fc-41f7-aece-f08f85f06d9a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[ Weight ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Color  '
+		lineageTag: e0ccfc89-19f5-4465-9bd8-2dc084540ab0
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ Color  ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Size  '
+		lineageTag: 525a6565-06c6-44ba-8b52-1527a9108dda
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ Size  ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Rating'
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 8cc1cdc3-6a4e-4f69-9772-e6c398c66a2a
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[ Rating]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column ' Stock  '
+		formatString: 0
+		lineageTag: c6926756-42c8-4802-8323-67157a896be7
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[ Stock  ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Country ID'
+		formatString: 0
+		lineageTag: 6a761ad7-ebc4-46d4-9372-1b1b7a29c5d9
+		summarizeBy: count
+		isNameInferred
+		sourceColumn: Sales[ Country ID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Sales Rep '
+		lineageTag: 4bd9f9c2-7184-452c-b00e-e0a5bf831a0d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ Sales Rep ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' CustomerID'
+		lineageTag: 94664da6-0905-4e5f-b781-316afd824fc5
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ CustomerID]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Address        '
+		lineageTag: 5e25fc75-07fd-42ec-828b-85e3c7cd7dea
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ Address        ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Zip Code'
+		lineageTag: 7381a4c7-d8f5-48d1-b1c8-6e72241f3713
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ Zip Code]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Phone    '
+		formatString: 0
+		lineageTag: b162c7a7-4e2a-44ee-b577-c641f54aa721
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[ Phone    ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Email            '
+		lineageTag: ccccb413-a832-4b4f-92b9-f4618ed04a28
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Sales[ Email            ]
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Loyalty Points'
+		formatString: 0
+		lineageTag: 78475922-289d-47ad-8f01-a7041394dcaf
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: Sales[ Loyalty Points]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Country Name'
+		lineageTag: bb726223-1b2d-43ff-a2fd-e81a2ba1c14d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Country Name]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Exchange Rate'
+		lineageTag: 530b1337-47ce-4ee8-8bcc-0c698121a1de
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Exchange Rate]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Exchange Currency'
+		lineageTag: c7990c41-9091-4f28-806c-91cec6374d92
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Exchange Currency]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gross Revenue USD'
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 92f651d2-a70b-4d7b-9b3a-a1dd1cde1782
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Gross Revenue USD]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Net Revenue USD'
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: 45a3c0ab-f5e7-4f07-b5f5-590bd7951753
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Net Revenue USD]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	column 'Total Tax USD'
+		formatString: \$#,0.00;(\$#,0.00);\$#,0.00
+		lineageTag: e8c01c2f-f711-4272-9e9b-a5c6adea09eb
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Total Tax USD]
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"en-US"}
+
+	partition 'Sales in USD' = calculated
+		mode: import
+		source =
+				
+				ADDCOLUMNS(
+				    'Sales',
+				    "Country Name", RELATED(Countries[Country]),
+				    "Exchange Rate", RELATED('Exchange Data'[ExchangeRate]),
+				    "Exchange Currency", RELATED('Exchange Data'[Exchange Currency]),
+				    "Gross Revenue USD", [Gross Revenue] * RELATED('Exchange Data'[ExchangeRate]),
+				    "Net Revenue USD", [Net Revenue] * RELATED('Exchange Data'[ExchangeRate]),
+				    "Total Tax USD", [Total Tax] * RELATED('Exchange Data'[ExchangeRate])
+				)
+
+	annotation PBI_Id = f4943a941fc747b2b6e742f908b19e51
+

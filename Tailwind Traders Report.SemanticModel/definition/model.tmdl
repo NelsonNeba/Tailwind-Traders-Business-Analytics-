@@ -1,0 +1,25 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBIDesktopVersion = 2.140.1577.0 (25.02)+00af0910c5ca19a229c472b0dfc17a2c488f6b0a
+
+annotation PBI_QueryOrder = ["Sales","Countries","Exchange Data","Purchases"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table Sales
+ref table Countries
+ref table 'Exchange Data'
+ref table Purchases
+ref table Calendar
+ref table 'Sales in USD'
+
+ref cultureInfo en-US
+
