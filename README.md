@@ -45,7 +45,7 @@ The primary objective of this capstone project was to develop a comprehensive Po
 
 ## 📊 Dashboard Preview
 
-*(Note: Replace this placeholder with an actual, high-quality screenshot of your Power BI dashboard.)*
+*![Dashboard](Assets/dashboard1.png)
 
 -----
 
@@ -81,7 +81,7 @@ This project integrates and transforms data from multiple sources to create a un
   * **Calculated Tables (DAX):**
       * **Calendar Table:** A dedicated date dimension table created using DAX to support time intelligence calculations.
       * **Sales in USD Table:** A calculated table to convert sales figures into a standardized USD currency using exchange rates.
-
+* ![Data Model](Assets/ERD.PNG)
 -----
 
 ## 💡 Key Insights & Visualizations
