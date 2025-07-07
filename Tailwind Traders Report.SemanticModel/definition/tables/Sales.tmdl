@@ -229,7 +229,7 @@ table Sales
 		mode: import
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("C:\Users\emily\Downloads\TailwindTradersSales.xlsx"), null, true),
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nel\Desktop\Data Analytics\Portfilio Projects\Analyzed projects\Capstone Project\Tailwind Traders Sales (Cleaned).xlsx"), null, true),
 				    Sales_Sheet = Source{[Item="Sales",Kind="Sheet"]}[Data],
 				    #"Promoted Headers" = Table.PromoteHeaders(Sales_Sheet, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{" OrderID ", Int64.Type}, {" Customer Name   ", type text}, {"Product Name", type text}, {"Product Description", type text}, {"Gross Product Price", Currency.Type}, {"Tax Per Product", Currency.Type}, {"Quantity Purchased", Int64.Type}, {"Gross Revenue", Currency.Type}, {"Total Tax", Currency.Type}, {"Net Revenue", Currency.Type}, {"Product Category", type text}, {" SKU Number ", type text}, {" Weight ", Int64.Type}, {" Color  ", type text}, {" Size  ", type text}, {" Rating", Currency.Type}, {" Stock  ", Int64.Type}, {" Country ID", Int64.Type}, {" Sales Rep ", type text}, {" CustomerID", type text}, {" Address        ", type text}, {" Zip Code", type any}, {" Phone    ", Int64.Type}, {" Email            ", type text}, {" Loyalty Points", Int64.Type}}),

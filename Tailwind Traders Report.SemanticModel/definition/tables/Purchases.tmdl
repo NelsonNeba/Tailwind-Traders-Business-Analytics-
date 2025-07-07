@@ -87,7 +87,7 @@ table Purchases
 		mode: import
 		source =
 				let
-				    Source = Excel.Workbook(File.Contents("C:\Users\emily\Downloads\Purchases.xlsx"), null, true),
+				    Source = Excel.Workbook(File.Contents("C:\Users\Nel\Desktop\Data Analytics\Portfilio Projects\Analyzed projects\Capstone Project\Purchases.xlsx"), null, true),
 				    Purchases_Sheet = Source{[Item="Purchases",Kind="Sheet"]}[Data],
 				    #"Promoted Headers" = Table.PromoteHeaders(Purchases_Sheet, [PromoteAllScalars=true]),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"PurchaseID", Int64.Type}, {" Supplier          ", type text}, {" Last Visited", type date}, {"ReturnStatus", type text}, {" Warranty (Months)", Int64.Type}, {" Purchase Date", type date}, {" Return Policy (Days)", Int64.Type}, {" Feedback", type text}, {" OrderID ", Int64.Type}}),
